@@ -1,8 +1,6 @@
 
     window.onload = function() {
         
-    }
-    
     var words = ["one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven"];
     var wins = 0;
     var losses = 0;
@@ -20,21 +18,10 @@
         console.log(underscores);
      
     document.onkeyup = function(event) {                                                        // I want something to happen when a key is pressed.
-    var userGuess = event.key.toLowerCase();                                                    // Every key pressed is registered as lowercase.
+        var userGuess = event.key.toLowerCase();                                                    // Every key pressed is registered as lowercase.
         var thekeycode = event.keyCode;                                                         //
         
         if (guessedletters.includes(userGuess)) {                                               // Has user choice already been selected? If so, do nothing. 
-        }
-
-        else if (underscores.toString() === compchoicearray.toString()) {
-            wins++;
-            console.log("wins " + wins);
-            document.getElementById("idwins").innerHTML = wins
-        }
-
-        else if (guessesleft === 0) {
-            losses++;
-            document.getElementById("idlosses").innerHTML = losses
         }
 
         else if (thekeycode >= 65 && thekeycode <= 90 && compchoice.indexOf(userGuess) == -1) {
@@ -43,6 +30,24 @@
             document.getElementById("idguessesleft").innerHTML = guessesleft;
             var displayguessedletters = guessedletters.join(' ');   
             document.getElementById("previousguesses").innerHTML = displayguessedletters;
+            if (guessesleft === 0) {
+                losses++;
+                document.getElementById("idlosses").innerHTML = losses
+                compchoice = words[Math.floor(Math.random()* words.length)];                console.log(compchoice)
+                guesses = compchoice.length + 3;
+                guessesleft = guesses;
+                underscores = [];
+                compchoicearray = [];
+                    for (u = 0; u < compchoice.length; u++) {
+                        underscores.push("_");
+                        compchoicearray.push(compchoice[u]);
+                displayunderscores = underscores.join(' ');
+                document.getElementById("mysteryword").innerHTML = displayunderscores;
+                guessedletters = [];
+                displayguessedletters = guessedletters.join(' ');
+                document.getElementById("previousguesses").innerHTML = displayguessedletters;
+                };
+            }
         }
 
         else if (thekeycode >= 65 && thekeycode <= 90) {                                       // Does the key pressed have a keycode between this range? If so, ...
@@ -56,13 +61,32 @@
                 if (compchoice[j] === userGuess) {                                             // ... 
                     underscores[j] = (userGuess);
                     var displayunderscores = underscores.join(' '); 
-                    document.getElementById("mysteryword").innerHTML = displayunderscores
+                    document.getElementById("mysteryword").innerHTML = displayunderscores  
+                    if (underscores.toString() === compchoicearray.toString()) {
+                        wins++;
+                        console.log("wins " + wins);
+                        document.getElementById("idwins").innerHTML = wins;
+                        compchoice = words[Math.floor(Math.random()* words.length)];                console.log(compchoice)
+                        guesses = compchoice.length + 3;
+                        guessesleft = guesses;
+                        underscores = [];
+                        compchoicearray = [];
+                            for (u = 0; u < compchoice.length; u++) {
+                                underscores.push("_");
+                                compchoicearray.push(compchoice[u]);
+                        displayunderscores = underscores.join(' ');
+                        document.getElementById("mysteryword").innerHTML = displayunderscores;
+                        guessedletters = [];
+                        displayguessedletters = guessedletters.join(' ');
+                        document.getElementById("previousguesses").innerHTML = displayguessedletters;
+                        };
+                    }
                 };
             };
 
             console.log(underscores);
         }
-        console.log(underscores);
+        
         }
             
         var displayguessedletters = guessedletters.join(' ');   
@@ -71,19 +95,8 @@
         document.getElementById("idguessesleft").innerHTML = guessesleft;
         document.getElementById("mysteryword").innerHTML = displayunderscores;
         document.getElementById("idlosses").innerHTML;
-        
-    
-    
-
-    
-        function logArray(list) {
-            for (i = 0; i < list.length; i++) { 
-                list[i];
-            }
-        }
-
-
-
+ 
+    }
     
 
 
