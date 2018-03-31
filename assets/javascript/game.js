@@ -6,50 +6,81 @@
     var words = ["one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven"];
     var wins = 0;
     var losses = 0;
-    var compChoice = []; 
-    var compChoice = words[Math.floor(Math.random() * words.length)].split('');         console.log(compChoice)
-    var guesses = compChoice.length + 3;
-    var guessesLeft = guesses;
-    var guessedLetters = [];
+    var compchoice = words[Math.floor(Math.random()* words.length)];    console.log(compchoice) 
+    var guesses = compchoice.length + 3;
+    var guessesleft = guesses;
+    var guessedletters = [];
     var underscores = [];
-    for (u = 0; u < compChoice.length; u++) {
-        underscores = underscores + "_ "
-    };
+    var compchoicearray = [];
+        for (u = 0; u < compchoice.length; u++) {
+            underscores.push("_");
+            compchoicearray.push(compchoice[u]);
+        };
+        console.log(compchoicearray);
+        console.log(underscores);
+     
+    document.onkeyup = function(event) {                                                        // I want something to happen when a key is pressed.
+    var userGuess = event.key.toLowerCase();                                                    // Every key pressed is registered as lowercase.
+        var thekeycode = event.keyCode;                                                         //
+        
+        if (guessedletters.includes(userGuess)) {                                               // Has user choice already been selected? If so, do nothing. 
+        }
 
-    
-    
+        else if (underscores.toString() === compchoicearray.toString()) {
+            wins++;
+            console.log("wins " + wins);
+            document.getElementById("idwins").innerHTML = wins
+        }
 
-  
-   
+        else if (guessesleft === 0) {
+            losses++;
+            document.getElementById("idlosses").innerHTML = losses
+        }
 
+        else if (thekeycode >= 65 && thekeycode <= 90 && compchoice.indexOf(userGuess) == -1) {
+            guessedletters.push(userGuess); 
+            guessesleft--;
+            document.getElementById("idguessesleft").innerHTML = guessesleft;
+            var displayguessedletters = guessedletters.join(' ');   
+            document.getElementById("previousguesses").innerHTML = displayguessedletters;
+        }
 
-    
-    document.onkeyup = function(event) {
-        var userGuess = event.key.toLowerCase();
-        var thekeycode = event.keyCode;
-        if (guessedLetters.includes(userGuess)) {}
+        else if (thekeycode >= 65 && thekeycode <= 90) {                                       // Does the key pressed have a keycode between this range? If so, ...
+            var displayguessedletters = guessedletters.join(' ');                              // ... join each new array item with a space ...
+            var compchoicelength = compchoice.length;                                          // 
+            document.getElementById("previousguesses").innerHTML = displayguessedletters;      // ... add the array (guessed letters) to the HTML within the div with id previousguesses 
+            
+            for (j = 0; j < compchoicelength; j++) {                                           // ... search through the index of the randomly generated word. 
+                compchoice[j];
+                
+                if (compchoice[j] === userGuess) {                                             // ... 
+                    underscores[j] = (userGuess);
+                    var displayunderscores = underscores.join(' '); 
+                    document.getElementById("mysteryword").innerHTML = displayunderscores
+                };
+            };
 
-        else if (thekeycode >= 65 && thekeycode <= 90) {    
-            guessedLetters.push(userGuess);
-                // if (guesses === 0) {losses++; new compChoice; guessleft = compChoice.length + 2;
-                if (compChoice.includes(userGuess)) {
-                    guessesLeft--;
-                }
-
-
-                //          else if (userGuess === indexOf(computerGuess)) {
+            console.log(underscores);
+        }
+        console.log(underscores);
         }
             
-        var displayGuesses = guessedLetters.join(', ');   
-        document.getElementById("previousguesses").innerHTML = displayGuesses;   
-        document.getElementById("idguessesLeft").innerHTML = guessesLeft;
-        document.getElementById("mysteryword").innerHTML = underscores;
+        var displayguessedletters = guessedletters.join(' ');   
+        var displayunderscores = underscores.join(' ');   
+        document.getElementById("previousguesses").innerHTML = displayguessedletters;   
+        document.getElementById("idguessesleft").innerHTML = guessesleft;
+        document.getElementById("mysteryword").innerHTML = displayunderscores;
+        document.getElementById("idlosses").innerHTML;
+        
+    
+    
+
+    
+        function logArray(list) {
+            for (i = 0; i < list.length; i++) { 
+                list[i];
+            }
         }
-    
-    
-
-    
-
 
 
 
