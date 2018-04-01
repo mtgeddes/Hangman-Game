@@ -1,9 +1,11 @@
 
 window.onload = function() {
         
-    var words = ["one", "two", "three", "four",                         // Random word options
-    "five", "six", "seven", "eight", "nine", "ten", "eleven"];          
-    var wins = 0;                                                       // Wins
+    var words = ["catboy", "connor", "gecko", "ninja",                         // Random word options
+    "red", "blue", "green", "romeo", "amaya", "purple", 
+    "pajamas", "owlette", "luna", "greg", "speed", "camo",
+    "fly"];          
+    var wins =  0;                                                       // Wins
     var losses = 0;                                                     // Losses
     var compChoice = words[Math.floor(Math.random()* words.length)];    // Random word
     var guesses = compChoice.length + 3;                                // Amount of guesses per word
@@ -24,6 +26,7 @@ window.onload = function() {
     var idPreviousGuesses = document.getElementById("previousguesses");
     var idGuessesLeft = document.getElementById("idguessesleft");
     var idMysteryWord = document.getElementById("mysteryword");
+    var message = document.getElementById("font");
 
     // Reset guesses, inputs, and hidden word...
     var reset = {
@@ -70,6 +73,8 @@ window.onload = function() {
                 losses++;
                 document.getElementById("idlosses").innerHTML = losses;
                 reset.resetnow();
+                idGuessesLeft.innerHTML = guessesLeft;
+                message.innerHTML = "Try again!";
             }
         }
 
@@ -88,6 +93,8 @@ window.onload = function() {
                         wins++;
                         document.getElementById("idwins").innerHTML = wins;
                         reset.resetnow();
+                        idGuessesLeft.innerHTML = guessesLeft;
+                        message.innerHTML = "You Won!";
                     };
                 };
             };

@@ -1,0 +1,110 @@
+body {
+    font-size: 25px;
+    background-color: #1b4082;
+    color: white;
+    text-align: center;
+    font-family: 'Boogaloo', cursive;
+}
+
+.backgroundimg {
+    background-image: url("../images/pjmasks.jpg");
+    background-repeat: no-repeat;
+    margin: auto;
+    max-width: 1200px;
+    width: 100%;
+    height: 675px;
+    position: relative;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 25px;    
+}
+
+#font {
+    color: white;
+    text-align: center;
+    font-size: 60px;
+    padding-top: 20px;
+    text-shadow: 2px 2px black;
+}
+    
+#idwins {
+    background-color: rgba(35,171,88,.75);
+    max-width: 150px;
+    border: solid 4px #126b39;
+    height: 150px;
+    position: relative;
+    top: 370px;
+    left: 330px;
+    border-radius: 25px;
+    padding-top: 35px;
+    box-sizing: border-box;
+    font-size: 50px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    text-shadow: 2px 2px #126b39;
+}
+
+
+#idlosses {
+    background-color: rgba(230,66,72,.75);
+    max-width: 150px;
+    border: solid 4px #64000f;
+    height: 150px;
+    position: relative;
+    top: 220px;
+    left: 750px;
+    border-radius: 25px;
+    box-sizing: border-box;
+    padding-top: 35px;
+    box-sizing: border-box;
+    font-size: 50px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    text-shadow: 2px 2px #64000f;
+}
+
+#idguessesleft {
+    background-color: rgba(66,111,172,.75);
+    max-width: 200px;
+    border: solid 4px #1d3e8c;
+    height: 50px;
+    position: relative;
+    top: 40px;
+    left: 518px;
+    border-radius: 25px;
+    box-sizing: border-box;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    text-shadow: 2px 2px #1d3e8c;
+    padding-top: 2px;
+    font-size: 25px;
+}
+
+#mysteryword {
+    background-color: rgba(66,111,172,.75);
+    max-width: 200px;
+    border: solid 4px #1d3e8c;
+    height: 50px;
+    position: relative;
+    top: 40px;
+    left: 518px;
+    border-radius: 25px;
+    box-sizing: border-box;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    text-shadow: 2px 2px #1d3e8c;
+    padding-top: 2px;
+    font-size: 25px;
+}
+
+#previousguesses {
+    background-color: rgba(66,111,172,.75);
+    max-width: 200px;
+    border: solid 4px #1d3e8c;
+    height: 50px;
+    position: relative;
+    top: 40px;
+    left: 518px;
+    border-radius: 25px;
+    box-sizing: border-box;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    text-shadow: 2px 2px #1d3e8c;
+    padding-top: 2px;
+    font-size: 25px;
+}
+
