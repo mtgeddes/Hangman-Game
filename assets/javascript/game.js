@@ -1,102 +1,99 @@
 
-    window.onload = function() {
+window.onload = function() {
         
-    var words = ["one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven"];
-    var wins = 0;
-    var losses = 0;
-    var compchoice = words[Math.floor(Math.random()* words.length)];    console.log(compchoice) 
-    var guesses = compchoice.length + 3;
-    var guessesleft = guesses;
-    var guessedletters = [];
-    var underscores = [];
-    var compchoicearray = [];
-        for (u = 0; u < compchoice.length; u++) {
+    var words = ["one", "two", "three", "four",                         // Random word options
+    "five", "six", "seven", "eight", "nine", "ten", "eleven"];          
+    var wins = 0;                                                       // Wins
+    var losses = 0;                                                     // Losses
+    var compChoice = words[Math.floor(Math.random()* words.length)];    // Random word
+    var guesses = compChoice.length + 3;                                // Amount of guesses per word
+    var guessesLeft = guesses;                                          // Guesses
+    var guessedLetters = [];                                            // Guessed incorrect letters array
+    var underscores = [];                                               // Hidden word
+    var compChoiceArray = [];                                           // Word array of random word chosen
+        for (u = 0; u < compChoice.length; u++) {
             underscores.push("_");
-            compchoicearray.push(compchoice[u]);
+            compChoiceArray.push(compChoice[u]);
         };
-        console.log(compchoicearray);
-        console.log(underscores);
-     
-    document.onkeyup = function(event) {                                                        // I want something to happen when a key is pressed.
-        var userGuess = event.key.toLowerCase();                                                    // Every key pressed is registered as lowercase.
-        var thekeycode = event.keyCode;                                                         //
+
+    // Joins...
+    var displayGuessedLetters = guessedLetters.join(' ');                                                      
+    var displayUnderscores = underscores.join(' ');
+
+    // Get elements...
+    var idPreviousGuesses = document.getElementById("previousguesses");
+    var idGuessesLeft = document.getElementById("idguessesleft");
+    var idMysteryWord = document.getElementById("mysteryword");
+
+    // Reset guesses, inputs, and hidden word...
+    var reset = {
+        resetnow: function () {
+            compChoice = words[Math.floor(Math.random()* words.length)];                
+            guesses = compChoice.length + 3;
+            guessesLeft = guesses;
+            underscores = [];
+            compChoiceArray = [];
+                for (u = 0; u < compChoice.length; u++) {
+                    underscores.push("_");
+                    compChoiceArray.push(compChoice[u]);
+                };
+            displayUnderscores = underscores.join(' ');
+            idMysteryWord.innerHTML = displayUnderscores;
+            guessedLetters = [];
+            displayGuessedLetters = guessedLetters.join(' ');
+            idPreviousGuesses.innerHTML = displayGuessedLetters;
+        }
+    }
+
+    // Add stats to page...
+    idPreviousGuesses.innerHTML = displayGuessedLetters;   
+    idGuessesLeft.innerHTML = guessesLeft;
+    idMysteryWord.innerHTML = displayUnderscores;
+
+    // Run when key pressed...     
+    document.onkeyup = function(event) {                                                        
+        var userGuess = event.key.toLowerCase();                                                
+        var theKeyCode = event.keyCode;                                                         
         
-        if (guessedletters.includes(userGuess)) {                                               // Has user choice already been selected? If so, do nothing. 
+        // Don't do anything if letter already used for current attempt...
+        if (guessedLetters.includes(userGuess)) {                                                
         }
 
-        else if (thekeycode >= 65 && thekeycode <= 90 && compchoice.indexOf(userGuess) == -1) {
-            guessedletters.push(userGuess); 
-            guessesleft--;
-            document.getElementById("idguessesleft").innerHTML = guessesleft;
-            var displayguessedletters = guessedletters.join(' ');   
-            document.getElementById("previousguesses").innerHTML = displayguessedletters;
-            if (guessesleft === 0) {
+        // Subtract a guess, log user input, and reset if no more guesses...
+        else if (theKeyCode >= 65 && theKeyCode <= 90 && compChoice.indexOf(userGuess) == -1) {
+            guessedLetters.push(userGuess); 
+            guessesLeft--;
+            idGuessesLeft.innerHTML = guessesLeft;
+            var displayGuessedLetters = guessedLetters.join(' ');   
+            idPreviousGuesses.innerHTML = displayGuessedLetters;
+            if (guessesLeft === 0) {
                 losses++;
-                document.getElementById("idlosses").innerHTML = losses
-                compchoice = words[Math.floor(Math.random()* words.length)];                console.log(compchoice)
-                guesses = compchoice.length + 3;
-                guessesleft = guesses;
-                underscores = [];
-                compchoicearray = [];
-                    for (u = 0; u < compchoice.length; u++) {
-                        underscores.push("_");
-                        compchoicearray.push(compchoice[u]);
-                displayunderscores = underscores.join(' ');
-                document.getElementById("mysteryword").innerHTML = displayunderscores;
-                guessedletters = [];
-                displayguessedletters = guessedletters.join(' ');
-                document.getElementById("previousguesses").innerHTML = displayguessedletters;
-                };
+                document.getElementById("idlosses").innerHTML = losses;
+                reset.resetnow();
             }
         }
 
-        else if (thekeycode >= 65 && thekeycode <= 90) {                                       // Does the key pressed have a keycode between this range? If so, ...
-            var displayguessedletters = guessedletters.join(' ');                              // ... join each new array item with a space ...
-            var compchoicelength = compchoice.length;                                          // 
-            document.getElementById("previousguesses").innerHTML = displayguessedletters;      // ... add the array (guessed letters) to the HTML within the div with id previousguesses 
-            
-            for (j = 0; j < compchoicelength; j++) {                                           // ... search through the index of the randomly generated word. 
-                compchoice[j];
-                
-                if (compchoice[j] === userGuess) {                                             // ... 
+        // Reveal letter(s) if correct guesses and reset if word completely guessed...
+        else if (theKeyCode >= 65 && theKeyCode <= 90) {                                       
+            var displayGuessedLetters = guessedLetters.join(' ');                             
+            var compChoicelength = compChoice.length;                                          
+            idPreviousGuesses.innerHTML = displayGuessedLetters;      
+            for (j = 0; j < compChoicelength; j++) {                                           
+                compChoice[j];
+                if (compChoice[j] === userGuess) {                                             
                     underscores[j] = (userGuess);
-                    var displayunderscores = underscores.join(' '); 
-                    document.getElementById("mysteryword").innerHTML = displayunderscores  
-                    if (underscores.toString() === compchoicearray.toString()) {
+                    var displayUnderscores = underscores.join(' '); 
+                    idMysteryWord.innerHTML = displayUnderscores;  
+                    if (underscores.toString() === compChoiceArray.toString()) {
                         wins++;
-                        console.log("wins " + wins);
                         document.getElementById("idwins").innerHTML = wins;
-                        compchoice = words[Math.floor(Math.random()* words.length)];                console.log(compchoice)
-                        guesses = compchoice.length + 3;
-                        guessesleft = guesses;
-                        underscores = [];
-                        compchoicearray = [];
-                            for (u = 0; u < compchoice.length; u++) {
-                                underscores.push("_");
-                                compchoicearray.push(compchoice[u]);
-                        displayunderscores = underscores.join(' ');
-                        document.getElementById("mysteryword").innerHTML = displayunderscores;
-                        guessedletters = [];
-                        displayguessedletters = guessedletters.join(' ');
-                        document.getElementById("previousguesses").innerHTML = displayguessedletters;
-                        };
-                    }
+                        reset.resetnow();
+                    };
                 };
             };
-
-            console.log(underscores);
-        }
-        
-        }
-            
-        var displayguessedletters = guessedletters.join(' ');   
-        var displayunderscores = underscores.join(' ');   
-        document.getElementById("previousguesses").innerHTML = displayguessedletters;   
-        document.getElementById("idguessesleft").innerHTML = guessesleft;
-        document.getElementById("mysteryword").innerHTML = displayunderscores;
-        document.getElementById("idlosses").innerHTML;
- 
-    }
+        };
+    };
+};
     
 
 
