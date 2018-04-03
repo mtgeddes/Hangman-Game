@@ -5,7 +5,7 @@ window.onload = function() {
     "red", "blue", "green", "romeo", "amaya", "purple", 
     "pajamas", "owlette", "luna", "greg", "speed", "camo",
     "fly"];          
-    var wins =  0;                                                       // Wins
+    var wins =  0;                                                      // Wins
     var losses = 0;                                                     // Losses
     var compChoice = words[Math.floor(Math.random()* words.length)];    // Random word
     var guesses = compChoice.length + 3;                                // Amount of guesses per word
