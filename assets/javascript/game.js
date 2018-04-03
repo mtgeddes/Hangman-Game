@@ -34,7 +34,7 @@ window.onload = function() {
             compChoice = words[Math.floor(Math.random()* words.length)];                
             guesses = compChoice.length + 3;
             guessesLeft = guesses;
-            underscores = [];
+            underscores = []; 
             compChoiceArray = [];
                 for (u = 0; u < compChoice.length; u++) {
                     underscores.push("_");
@@ -70,11 +70,11 @@ window.onload = function() {
             var displayGuessedLetters = guessedLetters.join(' ');   
             idPreviousGuesses.innerHTML = displayGuessedLetters;
             if (guessesLeft === 0) {
+                message.innerHTML = "The word was " + compChoice + ". Try again!";
                 losses++;
                 document.getElementById("idlosses").innerHTML = losses;
                 reset.resetnow();
                 idGuessesLeft.innerHTML = guessesLeft;
-                message.innerHTML = "Try again!";
             }
         }
 
@@ -90,11 +90,12 @@ window.onload = function() {
                     var displayUnderscores = underscores.join(' '); 
                     idMysteryWord.innerHTML = displayUnderscores;  
                     if (underscores.toString() === compChoiceArray.toString()) {
+                        message.innerHTML = "You Won! The word was " + compChoice + "."
                         wins++;
                         document.getElementById("idwins").innerHTML = wins;
                         reset.resetnow();
                         idGuessesLeft.innerHTML = guessesLeft;
-                        message.innerHTML = "You Won!";
+                        ;
                     };
                 };
             };
